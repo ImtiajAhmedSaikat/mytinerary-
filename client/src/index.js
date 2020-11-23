@@ -4,11 +4,32 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+import { composeWithDevTools } from "redux-devtools-extension";
 
+import { createStore, applyMiddleware } from "redux";
+
+import { Provider } from "react-redux";
+
+import thunk from "redux-thunk";
+
+import rootReducer from "./store/reducers/rootReducer";
+import { loadUser } from './store/actions/loginAction';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const store=createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk))
+);
+
+if(localStorage.token){
+  store.dispatch(loadUser())
+}
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+   <Provider store={store}>
+
+     <App/>
+
+  </Provider>,
   document.getElementById('root')
 );
 
