@@ -14,14 +14,14 @@ export const loadUser=()=>dispatch=>{
 }
 
 
+
 export const loginUser=(body)=>dispatch=>{
     const config={
         headers:{
             "Content-Type":"application/json"
         }
     }
-    console.log("loginUser")
-    alert(body)
+    
     const url = "http://localhost:5000/auth/login"
     axios.post(url,body,config).then(res=>{
         dispatch({

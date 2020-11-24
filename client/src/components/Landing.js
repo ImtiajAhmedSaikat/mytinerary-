@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import LandingCarousel from './LandingCarousel'
+import Navigation from './Navigation'
 
 export default class Landing extends Component {
     render() {
         return (
+            <>
+        <Navigation/>
             <div>
                 <header>
                     <img id="firstimage" src="/images/headerlogo.png" alt="error" height="100px" width="100px"/>
@@ -20,19 +24,15 @@ export default class Landing extends Component {
                 <br></br>
                 <p id="two">Want to build your own Mytinerary?</p>
                 <br></br>
-                <div id="createaccount">
-                <a href="/register">Create Account</a>
-                </div>
-                <div id="login">
-                <a href="/login">Login</a>
-                </div>
-                <div id="homeicon">
+                
+                {/* <div id="homeicon">
                 <a href="/"><img src="/images/homeicon.png"alt="error" height="50px" width="50px"/></a>
-                </div>
+                </div> */}
                 
-                
+                <LandingCarousel/>
                 
             </div>
+            </>
         )
     }
 }

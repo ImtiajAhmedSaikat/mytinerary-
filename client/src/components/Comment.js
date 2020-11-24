@@ -16,6 +16,7 @@ import dateformat from 'dateformat'
         this.state={
             text:"",
             modal:false,
+            commentId:""
 
         
              }
@@ -44,18 +45,24 @@ import dateformat from 'dateformat'
                else{
                    this.props.addComment(e.target.id,this.state.text)
                }
+               window.location.reload(true)
                 
                  }
-                 updateComment=()=>{
-                    console.log("update")
+                 updateComment=(e)=>{
+                    
+                this.props.updateComment(this.state.commentId,this.state.text)
+                   
+                 window.location.reload(true)
                  }
-                 deleteComment=()=>{
-                     console.log("delete")
+                 deleteComment=(id)=>{
+                     this.props.deleteComment(id)
+                     window.location.reload(true)
 
                 }
-                toggle=()=>{
-                    this.setState({modal:!this.state.modal})
-                    alert("tset button")
+                toggle=(id)=>{
+                    
+                    this.setState({modal:!this.state.modal,commentId:id})
+                    
                 }
 
     render() {
@@ -123,13 +130,13 @@ import dateformat from 'dateformat'
                                 </p>
 
                             </div>
-                            <div className="col-3" onClick={()=>this.toggle}>
+                            <div className="col-3" onClick={()=>this.toggle(comment._id)}>
 
                                 <BsPencil size={20}/>
-                                <a type="button" onClick={()=>this.onClick}>click</a>
+                             {/* <a type="button" onClick={()=>this.onClick()}>click</a> */}
 
                             </div>
-                            <div className="col-3"  onClick={()=>this.props.deleteComment(comment._id)}>
+                            <div className="col-3"  onClick={()=>this.deleteComment(comment._id)}>
 
                                 <BsTrash size={20}/>
 

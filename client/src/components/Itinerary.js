@@ -48,7 +48,7 @@ import Comment from './Comment'
                     let fav=this.props.favourites.map(el=>el.itineraryId)
                     console.log(fav)
                     let myColor;
-                    {fav.includes(itinerary._id)?myColor="red":myColor="grey"}
+                    fav.includes(itinerary._id)?myColor="red":myColor="grey"
                     
                     const itnStyle={
                         width:"98%",
@@ -64,7 +64,7 @@ import Comment from './Comment'
                             <div className="container">
                                 <div className="row mb-2">
                                     <div className="col-2">
-                                    <img src={itinerary.avater}className="img-circle rounded-circle float-left" height="50px"/>
+                                    <img src={itinerary.avater}alt="user avater" className="img-circle rounded-circle float-left" height="50px"/>
                                     </div>
                                     <div className="col-8">
                                     <h3 className="text-center">{itinerary.tittle}</h3>

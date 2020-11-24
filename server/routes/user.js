@@ -6,6 +6,8 @@ const userModel = require('../model/userModel')
 const bcrypt=require("bcrypt")
 const passport=require("passport")
 const itineraryModel = require('../model/itineraryModel')
+const jwt = require("jsonwebtoken")
+const key=require("../keys")
 
 
 router.post('/', async (req, res) => {
@@ -24,22 +26,70 @@ router.post('/', async (req, res) => {
             image:req.body.image
     
         })
-    console.log(newUser)
+    
     const salt = await bcrypt.genSalt(10)
     newUser.password= await bcrypt.hash(newUser.password,salt)
+    
         await newUser.save()
     
     
           .then(user => {
+        console.log(user)
     
-          res.send(user)
-    console.log(user)
+              const payload = {
+
+                            id: user._id,
+                
+                            username: user.email,
+                
+                            image: user.image
+                
+                };
+                
+                const options = {expiresIn: 2592000};
+                
+                jwt.sign(
+                
+                  payload,
+                
+                  key.secretOrKey,
+                
+                  options,
+                
+                  (err, token) => {
+                
+                    if(err){
+                
+                      res.json({
+                
+                        success: false,
+                
+                        token: "There was an error"
+                
+                      });
+                
+                    }else {
+                
+                      res.json({
+                
+                        success: true,
+                
+                        token: token
+                
+                      });
+                
+                    }
+                
+                  }
+                
+                );
+    
     
           })
     
           .catch(err => {
     
-          res.status(500).send("Server error")}) 
+          res.status(500).send(err.message)}) 
     
     });
     router.get(

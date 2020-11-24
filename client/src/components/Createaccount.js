@@ -33,6 +33,7 @@ import {createUser} from '../store/actions/userAction'
         const image=this.state.image
         const body=JSON.stringify({name,email,password,image})
         this.props.createUser(body)
+        this.props.history.push("/cities")
 
 
     }

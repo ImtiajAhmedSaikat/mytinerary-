@@ -3,6 +3,9 @@ import {connect}from "react-redux"
 import { Link } from 'react-router-dom'
 import {getCities}from "../store/actions/cityAction"
 
+import Navigation from './Navigation'
+
+
  class Cities extends Component {
     constructor(props){
         super(props)
@@ -13,10 +16,17 @@ import {getCities}from "../store/actions/cityAction"
     }
     componentDidMount(){
         this.props.getCities()
+        const url=this.props.location.search
+        if (url!==""){
+            let token = url.split("=")[1]
+            localStorage.setItem("token",token)
 
-        // fetch("http://localhost:5000/cities/all")
-        // .then(res=>res.json())
-        // .then(res=>this.setState({cities:res}))
+            
+            
+            console.log(token)
+        }
+
+       
     }
     handleChange=(e)=>{
         this.setState({
@@ -28,6 +38,7 @@ import {getCities}from "../store/actions/cityAction"
         
         return (
             <div>
+                <Navigation/>
                 <form>
   <label>Search city</label>
   <input type="text"  onChange={this.handleChange}/>

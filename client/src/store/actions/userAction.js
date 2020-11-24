@@ -23,9 +23,8 @@ export const createUser=(body)=>dispatch=>{
 }
 
 export const likeUnlike =(id)=>dispatch=>{
-    const config={
-        headers:{Authorization:`bearer ${localStorage.token}`}
-    }
+   
+    
   //  axios.post(`http://localhost:5000/user/test/${id}`,config)
   fetch(`http://localhost:5000/user/test/${id}`,{
       method:"POST",
