@@ -55,8 +55,15 @@ import dateformat from 'dateformat'
                  window.location.reload(true)
                  }
                  deleteComment=(id)=>{
-                     this.props.deleteComment(id)
-                     window.location.reload(true)
+                     const confirm = window.confirm("are you sure you want to delete this comment")
+                     if(confirm){
+                        this.props.deleteComment(id)
+                        window.location.reload(true)
+                       
+                       
+
+                     }
+                     
 
                 }
                 toggle=(id)=>{
@@ -96,7 +103,7 @@ import dateformat from 'dateformat'
                 {this.props.comments.map(comment=>{
                     return(
                        
-                        <div className="container" style={{border:"1px solid grey",borderRadius:"15px",padding:"5px",margin:"5px"}}>
+                        <div className="container" key={comment._id} style={{border:"1px solid grey",borderRadius:"15px",padding:"5px",margin:"5px"}}>
                             <div className="row">
                             <div className="col-3">
                                 <img src={comment.avater} alt ="user avater" className="img-rounded rounded-circle" height="30px" />

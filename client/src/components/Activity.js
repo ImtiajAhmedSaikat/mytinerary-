@@ -18,7 +18,7 @@ import {Carousel} from 'react-bootstrap'
         }
     }
     componentDidMount(){
-        this.props.getActivities(this.props.match.params.itineraryId)
+        this.props.getActivities(this.props.myId)
 
         
     }
@@ -37,7 +37,7 @@ import {Carousel} from 'react-bootstrap'
                     console.log(activity)
                     
                     return(
-                    <Carousel.Item>
+                    <Carousel.Item key={index}>
                         <img
                          src={activity.img}
                          className="d-block w-100"

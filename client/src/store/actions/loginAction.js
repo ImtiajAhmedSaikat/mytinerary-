@@ -1,4 +1,4 @@
-import {LOGIN_USER,LOAD_USER } from "./type"
+import {LOGIN_USER,LOAD_USER,LOGOUT } from "./type"
 import axios from 'axios'
 import jwtDecode from "jwt-decode"
 
@@ -34,4 +34,10 @@ export const loginUser=(body)=>dispatch=>{
 
     })
     .catch(err=>console.log(err.message))
+}
+export const logOut=()=>dispatch=>{
+    dispatch({
+        type:LOGOUT,
+        payload:"You successfully logout"
+    })
 }

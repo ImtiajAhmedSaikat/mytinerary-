@@ -47,7 +47,7 @@ class Test extends Component {
                </Button>
            </Form>
             <div style={{marginTop:"20px"}}>
-              <a className= "google-btn" href="http://localhost:5000/auth/google">Login with Google</a>
+              <a className= "google-btn" href="http://localhost:5000/auth/google">Google+</a>
             </div>
            </div>
        )

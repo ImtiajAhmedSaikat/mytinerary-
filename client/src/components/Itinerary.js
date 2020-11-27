@@ -5,6 +5,7 @@ import {getItineraries} from "../store/actions/itineraryAction"
 import {getOneCity} from '../store/actions/cityAction'
 import {likeUnlike}from '../store/actions/userAction'
 import Comment from './Comment'
+import Activity from './Activity'
 
  class Itinerary extends Component {
     constructor(props){
@@ -91,7 +92,7 @@ import Comment from './Comment'
                                 </div>
                                 <div className="row mb-1">
                                     <div className="col-12">
-                                    {itinerary.hashtags.map(hash=>{return <p style={{marginTop:"0px"}}>{hash}</p>})}
+                                    {itinerary.hashtags.map(hash=>{return <p key={itinerary.title}style={{marginTop:"0px"}}>{hash}</p>})}
                                     
                                     </div>
                                     
@@ -102,6 +103,7 @@ import Comment from './Comment'
                      View more
                  </button>
                  <div className="col-12">
+                     {this.state.itnId===itinerary._id && <Activity myId={itinerary._id}/>}
                      {this.state.itnId===itinerary._id && <Comment myId={itinerary._id}/>}
                  </div>
 

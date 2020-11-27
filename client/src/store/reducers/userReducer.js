@@ -1,4 +1,4 @@
-import{LOGIN_USER,LOAD_USER, USER_FAVOURITE} from "../actions/type"
+import{LOGIN_USER,LOAD_USER, USER_FAVOURITE,CREATE_USER,LOGOUT} from "../actions/type"
 
 
 const initialState = {
@@ -11,6 +11,20 @@ const initialState = {
         case LOGIN_USER:
            localStorage.setItem("token",action.payload.token)
            console.log(action.payload.token)
+            return {
+                ...state,
+                item: action.payload
+            };
+            case LOGOUT:
+           localStorage.removeItem("token")
+        
+            return {
+                ...state,
+                item: action.payload
+            };
+            case CREATE_USER:
+           localStorage.setItem("token",action.payload.token)
+           
             return {
                 ...state,
                 item: action.payload
