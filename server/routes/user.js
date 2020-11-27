@@ -8,9 +8,25 @@ const passport=require("passport")
 const itineraryModel = require('../model/itineraryModel')
 const jwt = require("jsonwebtoken")
 const key=require("../keys")
+const {check,validationResult}=require("express-validator")
 
 
-router.post('/', async (req, res) => {
+router.post('/', [
+        check("name","Name is required")
+        .not()
+        .isEmpty(),
+        check(
+                "password",
+                "password must be at least 6 characters"
+        ).isLength({min:6})
+
+],async (req, res) => {
+        const errors=validationResult(req)
+        if(!errors.isEmpty()){
+                return res.status(400).json({
+                        errors: errors.array()
+                    });
+        }
 
         const newUser = new userModel({
     
